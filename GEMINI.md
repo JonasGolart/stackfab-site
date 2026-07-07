@@ -10,10 +10,11 @@
 
 ## 📡 [MESSAGES / HANDOVER]
 - **[2026-05-04]:** Inicialização do projeto StackFAB Site. Definindo arquitetura baseada em Next.js 14+ (App Router), Tailwind CSS e Framer Motion. Seguindo orientações do Armazém.
+- **[2026-07-07]:** Servidor de desenvolvimento local iniciado e rodando no endereço: http://localhost:3001 (porta 3000 ocupada).
+
 
 ## 🏗️ [CONTRACTS & ARCHITECTURE]
-- **Stack:** Next.js 14+ | Tailwind CSS | Framer Motion | TypeScript
-- **Design System:** StackFAB Modern (Deep Blue/Grafite + Neon Accents + Glassmorphism)
+- **Repo:** [JonasGolart/stackfab-site](https://github.com/JonasGolart/stackfab-site)
 - **Portas:** Web roda na `:3000`
 
 ## ✅ [COMPLETED TASKS]
@@ -24,4 +25,5 @@
 - [x] Implementar Seção de Produtos (AprendiAI, StackFab 2, FazAI).
 - [x] Implementar Serviço de E-mail e API Routes.
 - [x] Validar Build Production.
-- [x] Finalizar Documentação no Obsidian.
+- [x] Sincronizar Documentação Final no Obsidian.
+- [x] Criar repositório GitHub e realizar push inicial.

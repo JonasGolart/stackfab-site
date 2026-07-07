@@ -8,24 +8,24 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = ({ variant = 'primary', size = 'md', children, className = '', ...props }: ButtonProps) => {
-  const baseStyles = 'inline-flex items-center justify-center rounded-full font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'inline-flex items-center justify-center rounded-full font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer';
   
   const variants = {
-    primary: 'bg-gradient-tech text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:scale-105',
-    secondary: 'bg-white text-black hover:bg-gray-100 hover:scale-105',
-    outline: 'border border-border bg-transparent hover:bg-white/5',
-    ghost: 'bg-transparent hover:bg-white/5',
+    primary: 'bg-gradient-tech text-white shadow-md shadow-indigo-500/10 hover:shadow-indigo-500/25 hover:scale-[1.02]',
+    secondary: 'bg-slate-100 text-slate-800 hover:bg-slate-200 hover:scale-[1.02]',
+    outline: 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 hover:scale-[1.02]',
+    ghost: 'bg-transparent text-slate-600 hover:bg-slate-50',
   };
 
   const sizes = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg',
+    sm: 'px-4 py-2 text-xs font-bold uppercase tracking-wider',
+    md: 'px-6 py-3 text-sm font-bold uppercase tracking-wider',
+    lg: 'px-8 py-4 text-base font-bold uppercase tracking-wider',
   };
 
   return (
     <motion.button
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: 0.98 }}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props as any}
     >
@@ -33,3 +33,4 @@ export const Button = ({ variant = 'primary', size = 'md', children, className =
     </motion.button>
   );
 };
+

@@ -1,0 +1,11 @@
+services:
+  stackfab-site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stackfab-site
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: unless-stopped

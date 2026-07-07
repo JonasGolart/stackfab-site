@@ -19,26 +19,29 @@ export const Navbar = () => {
 
   const navLinks = [
     { name: 'Produtos', href: '#produtos' },
-    { name: 'Serviços', href: '#servicos' },
-    { name: 'Sobre', href: '#sobre' },
+    { name: 'Método', href: '#metodo' },
+    { name: 'Diferenciais', href: '#diferenciais' },
   ];
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'py-4' : 'py-6'
+      isScrolled ? 'py-3' : 'py-5'
     }`}>
       <div className="container mx-auto px-6">
-        <div className={`glass rounded-full px-6 py-3 flex items-center justify-between border-black/5 transition-all ${
-          isScrolled ? 'shadow-xl' : ''
+        <div className={`glass-premium rounded-full px-6 py-3 flex items-center justify-between transition-all ${
+          isScrolled ? 'shadow-lg border-slate-200/50' : 'border-transparent bg-white/40'
         }`}>
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-tech rounded-lg flex items-center justify-center font-bold text-white italic">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-tech rounded-lg flex items-center justify-center font-bold text-white italic shadow-sm">
               S
             </div>
-            <span className="text-xl font-outfit font-bold tracking-tight">
-              Stack<span className="text-primary">Fab</span>
-            </span>
+            <div className="flex flex-col">
+              <span className="text-lg font-outfit font-bold tracking-tight text-slate-800 leading-none">
+                Stack<span className="text-indigo-600">Fab</span>
+              </span>
+              <span className="text-[9px] font-medium text-slate-400 mt-0.5 tracking-wider uppercase">SaaS Studio</span>
+            </div>
           </div>
 
           <div className="hidden md:flex items-center gap-8">
@@ -46,21 +49,28 @@ export const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
+                className="text-xs font-semibold text-slate-600 hover:text-indigo-600 transition-colors uppercase tracking-wider"
               >
                 {link.name}
               </a>
             ))}
+            
+            {/* Status dot */}
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/50">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wide">Orquestrador Ativo</span>
+            </div>
+
             <Button size="sm" onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}>
               Orçamento
             </Button>
           </div>
 
           <button 
-            className="md:hidden text-black"
+            className="md:hidden text-slate-700 p-1"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X /> : <Menu />}
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
@@ -69,23 +79,32 @@ export const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -10 }}
             className="md:hidden absolute top-full left-0 right-0 mt-2 px-6"
           >
-            <div className="glass-dark rounded-3xl p-6 flex flex-col gap-4">
+            <div className="glass rounded-3xl p-6 flex flex-col gap-4 shadow-xl">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-lg font-medium text-gray-300"
+                  className="text-sm font-semibold text-slate-700 hover:text-indigo-600 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
-              <Button className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+              
+              <div className="flex items-center gap-1.5 py-1 px-2 rounded-lg bg-emerald-50 border border-emerald-100/50 w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wide">Orquestrador Ativo</span>
+              </div>
+
+              <Button className="w-full" onClick={() => {
+                setIsMobileMenuOpen(false);
+                document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+              }}>
                 Orçamento
               </Button>
             </div>
@@ -95,3 +114,4 @@ export const Navbar = () => {
     </nav>
   );
 };
+

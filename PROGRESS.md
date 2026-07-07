@@ -6,6 +6,8 @@ Histórico de desenvolvimento e marcos atingidos.
 
 ### Fase 1: Setup e Infraestrutura (2026-05-04)
 - [x] Inicialização do projeto Next.js 14+ com App Router.
+- [x] Configuração de Produção (API Key Resend).
+- [x] Criação de repositório GitHub e Push inicial.
 - [x] Configuração de padrões técnicos da StackFAB (Armazém).
 - [x] Instalação de dependências (Framer Motion, Lucide React).
 - [x] Configuração do Design System Global (globals.css, layout.tsx).
@@ -25,13 +27,20 @@ Histórico de desenvolvimento e marcos atingidos.
 - [x] Rodapé institucional.
 - [x] Validação de Build Production.
 
+### Fase 4: Reposicionamento para SaaS Studio (2026-07-07)
+- [x] Reposicionamento estratégico como Estúdio de SaaS e Soluções Agênticas de Elite.
+- [x] Design visual Light Theme Premium com foco em credibilidade e corporativismo.
+- [x] Implementação do componente `TerminalMock` interativo demonstrando orquestração de agentes.
+- [x] Expansão do portfólio para 6 produtos core (Sofia, CRM, AprendiAI, FazAI, StackFab 2 e Dra Alessandra).
+- [x] Migração de envio de e-mails de Resend para SMTP Hostinger (`suporte@stackfab.com.br`) usando Nodemailer.
+- [x] Validação bem-sucedida do build de produção (`npm run build`).
+
 ## ⏳ Próximos Passos
-- [ ] Integração real com Resend para o formulário de contato.
-- [ ] Adicionar micro-interações em elementos de scroll (Intersection Observer).
-- [ ] Otimização de SEO (Open Graph images, meta tags dinâmicas).
-- [ ] Deploy inicial no Vercel/Coolify.
+- [ ] Criar e anexar as subpáginas dedicadas para produtos chave (AprendiAI, StackFab 2 e Sofia).
+- [ ] Adicionar micro-interações de scroll (Framer Motion scroll transitions).
+- [ ] Otimização avançada de SEO institucional.
 
 ## 🛠️ Notas Técnicas
-- **Paleta:** Deep Blue (#050505) com acentos em Cyan (#00e5ff) e Purple (#7000ff).
+- **Paleta:** Fundo Slate leve (#f8fafc) e acentos em Indigo (#4f46e5) e Sky (#0ea5e9).
 - **Tipografia:** Inter (corpo) e Outfit (títulos).
-- **Animações:** Framer Motion (entrance e float animations).
+- **Envio:** SMTP Hostinger (suporte@stackfab.com.br) via Nodemailer.
