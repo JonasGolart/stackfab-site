@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/Button";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { BackgroundGrid } from "@/components/ui/BackgroundGrid";
 import { TerminalMock } from "@/components/ui/TerminalMock";
+import { InteractiveShowcase } from "@/components/ui/InteractiveShowcase";
 
 export default function Home() {
   const products = [
@@ -161,14 +162,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Terminal Mock Section */}
+      {/* Terminal Mock Section & Interactive Showcase */}
       <section className="pb-24">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
+        <div className="container mx-auto px-6 space-y-16">
+          <div className="text-center">
             <h2 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">Tecnologia em Ação</h2>
-            <p className="text-2xl font-outfit font-extrabold text-slate-800">Orquestração Agêntica em Tempo Real</p>
+            <h3 className="text-3xl font-outfit font-extrabold text-slate-900 mb-4">Veja as Nossas Soluções Operando em Tempo Real</h3>
+            <p className="text-slate-500 max-w-xl mx-auto font-medium text-sm">
+              Do log de orquestração do back-end ao simulador de conversas e pipelines comerciais no front-end.
+            </p>
           </div>
           <TerminalMock />
+          <InteractiveShowcase />
         </div>
       </section>
 
