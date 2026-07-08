@@ -18,9 +18,10 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
+    { name: 'Desafios', href: '#desafios' },
     { name: 'Produtos', href: '#produtos' },
-    { name: 'Método', href: '#metodo' },
-    { name: 'Diferenciais', href: '#diferenciais' },
+    { name: 'Infraestrutura', href: '#pilares' },
+    { name: 'Fale Conosco', href: '#contato' },
   ];
 
   return (
@@ -40,7 +41,7 @@ export const Navbar = () => {
               <span className="text-lg font-outfit font-bold tracking-tight text-slate-800 leading-none">
                 Stack<span className="text-indigo-600">Fab</span>
               </span>
-              <span className="text-[9px] font-medium text-slate-400 mt-0.5 tracking-wider uppercase">SaaS Studio</span>
+              <span className="text-[9px] font-medium text-slate-400 mt-0.5 tracking-wider uppercase">Software que pensa</span>
             </div>
           </div>
 
@@ -56,13 +57,13 @@ export const Navbar = () => {
             ))}
             
             {/* Status dot */}
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/50">
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/50">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wide">Orquestrador Ativo</span>
+                <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wide">Agentes Ativos</span>
             </div>
 
             <Button size="sm" onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}>
-              Orçamento
+              Fale Conosco
             </Button>
           </div>
 
@@ -98,14 +99,14 @@ export const Navbar = () => {
               
               <div className="flex items-center gap-1.5 py-1 px-2 rounded-lg bg-emerald-50 border border-emerald-100/50 w-fit">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wide">Orquestrador Ativo</span>
+                <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wide">Agentes Ativos</span>
               </div>
 
               <Button className="w-full" onClick={() => {
                 setIsMobileMenuOpen(false);
                 document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
               }}>
-                Orçamento
+                Fale Conosco
               </Button>
             </div>
           </motion.div>

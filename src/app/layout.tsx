@@ -6,9 +6,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "StackFab | Automação Web e Inteligência Artificial",
-  description: "A StackFab cria soluções inteligentes em automação web e IA para empresas e instituições de ensino. Aceleramos seus processos com tecnologia de ponta.",
-  keywords: ["automação", "inteligência artificial", "web scraping", "nextjs", "aprendiai", "fazai", "stackfab"],
+  title: "StackFab | Software que pensa, age e escala",
+  description: "Landing page da StackFab com foco em desenvolvimento web premium, automação agêntica e infraestrutura self-hosted para empresas que querem escalar com IA.",
+  keywords: ["StackFab", "IA agêntica", "automação", "web apps", "infraestrutura self-hosted", "nextjs", "workflow", "WhatsApp"],
 };
 
 export default function RootLayout({

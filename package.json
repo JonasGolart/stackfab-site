@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "design:lint": "designmd lint DESIGN.md",
+    "design:export": "designmd export --format css-tailwind DESIGN.md > src/app/theme-tokens.css"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",

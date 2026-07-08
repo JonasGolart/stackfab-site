@@ -35,12 +35,18 @@ Histórico de desenvolvimento e marcos atingidos.
 - [x] Migração de envio de e-mails de Resend para SMTP Hostinger (`suporte@stackfab.com.br`) usando Nodemailer.
 - [x] Validação bem-sucedida do build de produção (`npm run build`).
 
+### Fase 5: Padronização e Tokens de Design (2026-07-08)
+- [x] Adoção obrigatória do padrão `DESIGN.md` na raiz do projeto.
+- [x] Mapeamento dos design tokens oficiais (colors, typography, rounded, spacing, components).
+- [x] Inclusão de scripts `design:lint` e `design:export` no `package.json` para validação e integração com Tailwind CSS v4.
+
 ## ⏳ Próximos Passos
 - [ ] Criar e anexar as subpáginas dedicadas para produtos chave (AprendiAI, StackFab 2 e Sofia).
 - [ ] Adicionar micro-interações de scroll (Framer Motion scroll transitions).
 - [ ] Otimização avançada de SEO institucional.
 
 ## 🛠️ Notas Técnicas
+- **Design Tokens:** Detalhados e documentados em [[DESIGN.md]].
 - **Paleta:** Fundo Slate leve (#f8fafc) e acentos em Indigo (#4f46e5) e Sky (#0ea5e9).
 - **Tipografia:** Inter (corpo) e Outfit (títulos).
 - **Envio:** SMTP Hostinger (suporte@stackfab.com.br) via Nodemailer.

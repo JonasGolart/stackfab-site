@@ -27,7 +27,7 @@ export const Button = ({ variant = 'primary', size = 'md', children, className =
     <motion.button
       whileTap={{ scale: 0.98 }}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
-      {...props as any}
+      {...props}
     >
       {children}
     </motion.button>

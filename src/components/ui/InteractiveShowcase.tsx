@@ -3,19 +3,16 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./Button";
-import { 
-  MessageSquare, 
-  Database, 
-  GraduationCap, 
-  Send, 
-  TrendingUp, 
-  Plus, 
-  Sparkles, 
+import {
+  MessageSquare,
+  Database,
+  GraduationCap,
+  Send,
+  Sparkles,
   CheckCircle,
   HelpCircle,
   FileQuestion,
-  Users,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 
 // Types for CRM Kanban
@@ -258,7 +255,7 @@ export const InteractiveShowcase = () => {
                       disabled={isTyping}
                       className="w-full text-left px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-indigo-50/50 hover:border-indigo-200 transition-colors text-xs font-semibold text-slate-700 flex items-center justify-between group disabled:opacity-50 cursor-pointer"
                     >
-                      <span>💬 \"Quero agendar uma aula experimental amanhã\"</span>
+                      <span>💬 &quot;Quero agendar uma aula experimental amanhã&quot;</span>
                       <ArrowRight size={14} className="text-slate-400 group-hover:text-indigo-600 transition-transform group-hover:translate-x-0.5" />
                     </button>
                     <button
@@ -269,7 +266,7 @@ export const InteractiveShowcase = () => {
                       disabled={isTyping}
                       className="w-full text-left px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-indigo-50/50 hover:border-indigo-200 transition-colors text-xs font-semibold text-slate-700 flex items-center justify-between group disabled:opacity-50 cursor-pointer"
                     >
-                      <span>💬 \"Qual o valor da mensalidade de 2x na semana?\"</span>
+                      <span>💬 &quot;Qual o valor da mensalidade de 2x na semana?&quot;</span>
                       <ArrowRight size={14} className="text-slate-400 group-hover:text-indigo-600 transition-transform group-hover:translate-x-0.5" />
                     </button>
                     <button
@@ -280,7 +277,7 @@ export const InteractiveShowcase = () => {
                       disabled={isTyping}
                       className="w-full text-left px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-indigo-50/50 hover:border-indigo-200 transition-colors text-xs font-semibold text-slate-700 flex items-center justify-between group disabled:opacity-50 cursor-pointer"
                     >
-                      <span>💬 \"Falar com atendente humano\"</span>
+                      <span>💬 &quot;Falar com atendente humano&quot;</span>
                       <ArrowRight size={14} className="text-slate-400 group-hover:text-indigo-600 transition-transform group-hover:translate-x-0.5" />
                     </button>
                   </div>
@@ -601,7 +598,7 @@ export const InteractiveShowcase = () => {
                     >
                       <HelpCircle size={48} className="text-slate-300 mx-auto" />
                       <p className="text-sm font-semibold text-slate-400">Nenhuma questão gerada.</p>
-                      <p className="text-xs text-slate-400 max-w-xs mx-auto">Selecione o tema na lateral e clique em \"Gerar Questão IA\" para iniciar a orquestração.</p>
+                      <p className="text-xs text-slate-400 max-w-xs mx-auto">Selecione o tema na lateral e clique em &quot;Gerar Questão IA&quot; para iniciar a orquestração.</p>
                     </motion.div>
                   )}
 
