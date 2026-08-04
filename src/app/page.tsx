@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Activity,
-  ChevronRight,
   Cpu,
   Database,
   GraduationCap,
@@ -15,97 +15,189 @@ import { Navbar } from "@/components/ui/Navbar";
 import { Button } from "@/components/ui/Button";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { BackgroundGrid } from "@/components/ui/BackgroundGrid";
+import { TerminalMock } from "@/components/ui/TerminalMock";
 
 export default function Home() {
+  const [activeCategory, setActiveCategory] = useState<"todos" | "erp-gestao" | "ia-edu">("todos");
+
+  const categories = [
+    { id: "todos", name: "Todos os Produtos" },
+    { id: "erp-gestao", name: "Gestão & ERPs" },
+    { id: "ia-edu", name: "IA & Educação" },
+  ];
+
   const products = [
-    {
-      title: "StackFab CRM",
-      slogan: "stackfab.com.br",
-      description: "CRM comercial com pipeline em kanban, contatos, WhatsApp, e-mail, tarefas, campanhas e copiloto de atendimento.",
-      icon: <Database size={22} />,
-      color: "emerald",
-      badge: "Sales Ops",
-      techStack: ["CRM", "Kanban", "WhatsApp", "Pipeline"],
-      link: "https://stackfab.com.br",
-    },
     {
       title: "Sofia",
       slogan: "Secretariado Conversacional",
-      description: "Assistente virtual para WhatsApp e Telegram com RAG, agenda interna, Google Calendar e transbordo humano.",
+      description: "Assistente virtual de IA com RAG no Redis Stack, histórico persistente de conversas, roteamento inteligente e agendamento automático de compromissos via Google Calendar.",
       icon: <MessageSquare size={22} />,
       color: "indigo",
-      badge: "Secretaria IA",
-      techStack: ["Prompting", "LLMs", "WhatsApp", "Automação"],
+      badge: "IA & Automação",
+      techStack: ["Python", "Redis Stack", "Google Calendar API", "WhatsApp/Telegram"],
+      category: "ia-edu",
       link: "https://sofias.stackfab.com.br",
     },
     {
-      title: "Questione Online",
-      slogan: "Blueprints & Provisionamento",
-      description: "Plataforma de blueprints e provisionamento com dashboard, marketplace e fluxo guiado para iniciar novas soluções.",
-      icon: <Workflow size={22} />,
-      color: "violet",
-      badge: "Blueprints & Deploy",
-      techStack: ["Blueprints", "Provisionamento", "Dashboard", "Deploy"],
-      link: "https://quest.stackfab.com.br",
+      title: "Linux Lab",
+      slogan: "PRCbook Vivo v2.0",
+      description: "Containers Linux reais, seguros e interativos diretamente no navegador para alunos de 12 a 16 anos, dispensando qualquer instalação de emuladores ou softwares locais.",
+      icon: <Cpu size={22} />,
+      color: "sky",
+      badge: "Infra & Educação",
+      techStack: ["Docker", "Python/FastAPI", "React", "Linux Containers"],
+      category: "ia-edu",
+      link: "https://linuxlab.stackfab.com.br",
     },
     {
       title: "AprendiAI",
-      slogan: "Aprendizado Adaptativo",
-      description: "LMS com IA para gerar questões, corrigir discursivas, criar recuperação personalizada e acompanhar desempenho.",
+      slogan: "LMS com IA Adaptativa",
+      description: "Plataforma avançada de gestão de aprendizagem (LMS) que usa Inteligência Artificial para gerar questões, corrigir discursivas e criar rotas de recuperação personalizadas.",
       icon: <GraduationCap size={22} />,
       color: "amber",
       badge: "LMS Adaptativo",
-      techStack: ["Aprendizado", "IA", "Treinamento", "Interatividade"],
+      techStack: ["Next.js", "Tailwind CSS", "Shadcn UI", "LLMs"],
+      category: "ia-edu",
       link: "https://aprendiai.info",
     },
+    {
+      title: "StackFab CRM",
+      slogan: "Sales Ops & WhatsApp",
+      description: "CRM comercial corporativo com pipeline Kanban, gestão unificada de contatos, campanhas em massa, disparador WhatsApp e copiloto inteligente de atendimento.",
+      icon: <Database size={22} />,
+      color: "emerald",
+      badge: "Vendas & Ops",
+      techStack: ["Next.js", "Prisma ORM", "WAHA API", "PostgreSQL"],
+      category: "erp-gestao",
+      link: "https://crm.stackfab.com.br",
+    },
+    {
+      title: "BrasilSul ERP",
+      slogan: "Gestão de Transportes",
+      description: "Sistema ERP completo sob medida para o setor de transportes e logística, integrando gestão de frotas, escalas de motoristas, controle de combustíveis e financeiro.",
+      icon: <Workflow size={22} />,
+      color: "violet",
+      badge: "Logística",
+      techStack: ["React", "Vite", "Node.js/Express", "PostgreSQL"],
+      category: "erp-gestao",
+      link: "https://brasilsul.log.br",
+    },
+    {
+      title: "ERP Oficinas",
+      slogan: "Multi-Tenant Automotivo",
+      description: "Plataforma de gestão SaaS para oficinas mecânicas e funilarias, englobando controle de fluxo de agendamento, ordens de serviço e faturamento automatizado.",
+      icon: <Database size={22} />,
+      color: "rose",
+      badge: "ERP SaaS",
+      techStack: ["FastAPI", "Next.js", "Celery Workers", "PostgreSQL"],
+      category: "erp-gestao",
+    },
+    {
+      title: "Dra Alessandra CRM",
+      slogan: "CRM para Clínicas",
+      description: "Software de gestão especializada para consultórios de dermatologia, cobrindo prontuário eletrônico completo, agenda médica e controle de fluxo financeiro.",
+      icon: <Activity size={22} />,
+      color: "sky",
+      badge: "Healthcare",
+      techStack: ["React", "Vite", "Tailwind CSS", "PostgreSQL"],
+      category: "erp-gestao",
+    },
+    {
+      title: "FisioPilates",
+      slogan: "Gestão de Pilates",
+      description: "Plataforma focada no controle de estúdios de Pilates e fisioterapia, englobando agendamento dinâmico de turmas, fichas de acompanhamento físico e cobrança recorrente.",
+      icon: <Activity size={22} />,
+      color: "emerald",
+      badge: "Fitness",
+      techStack: ["Next.js", "Tailwind CSS", "PostgreSQL"],
+      category: "erp-gestao",
+    },
+    {
+      title: "Questionário Online",
+      slogan: "Avaliações UTFPR",
+      description: "Plataforma oficial de questionários acadêmicos desenvolvida em cooperação técnica, com geração de tokens seguros de acesso e relatórios automatizados de feedback.",
+      icon: <GraduationCap size={22} />,
+      color: "violet",
+      badge: "Educação",
+      techStack: ["Node.js", "Express", "PostgreSQL", "Resend API"],
+      category: "ia-edu",
+      link: "https://quest.stackfab.com.br",
+    },
+    {
+      title: "Ondas do Conhecimento",
+      slogan: "Extensão & Rádio",
+      description: "Portal voltado a disseminar o radioamadorismo e a cultura científica para grupos de escotismo do Paraná, em convênio com a UTFPR e a ARPA-PR.",
+      icon: <Workflow size={22} />,
+      color: "amber",
+      badge: "Extensão Social",
+      techStack: ["HTML5", "Node.js", "Express", "PostgreSQL", "JWT"],
+      category: "ia-edu",
+      link: "https://ondas.stackfab.com.br",
+    }
   ];
 
   const challenges = [
     {
-      title: "Atendimento travado?",
-      description: "Chatbots engessados frustram o cliente. Sofia entende intenção, responde e encaminha o próximo passo.",
+      type: "problem",
+      title: "Atendimento Gargalado?",
+      description: "Chatbots antigos irritam o cliente com respostas prontas. Qualquer desvio quebra a experiência.",
     },
     {
-      title: "Processos desconectados?",
-      description: "Planilhas, retrabalho e perda de dados. Questione Online organiza projetos, blueprints e entregas para operar com menos ruído.",
+      type: "solution",
+      title: "Agentes Inteligentes",
+      description: "Nossos Agentes de IA conversam via WhatsApp, entendem intenções, resolvem dúvidas e efetuam agendamentos em tempo real no seu CRM.",
+    },
+    {
+      type: "problem",
+      title: "Processos Manuais Desconexos?",
+      description: "Planilhas soltas, retrabalho e perda de dados entre sistemas que não conversam.",
+    },
+    {
+      type: "solution",
+      title: "Infraestrutura Unificada",
+      description: "Unificamos sua infraestrutura conectando automações avançadas e bancos de dados robustos que trabalham 24/7 em segundo plano.",
     },
   ];
 
   const pillars = [
     {
       title: "Web Apps Premium",
-      description: "Interfaces rápidas, limpas e focadas em conversão, construídas com o stack certo para escalar.",
+      description: "Interfaces ultra velozes com ecossistema JS/Python + Tailwind CSS. Foco total em experiência, escaneabilidade e taxas de conversão elevadas.",
       icon: <Cpu className="text-indigo-600" />,
     },
     {
       title: "Engenharia Agêntica de IA",
-      description: "Agentes integrados a LLMs que entendem contexto, consultam sistemas e executam tarefas reais.",
+      description: "Agentes integrados a LLMs que se conectam aos seus sistemas internos para agendar, preencher, triar e operar de forma autônoma.",
       icon: <Sparkles className="text-sky-600" />,
     },
     {
-      title: "Automação & Infraestrutura Self-Hosted",
-      description: "Stack self-hosted com mais controle, menos custo recorrente e privacidade de verdade.",
+      title: "Infraestrutura Self-Hosted",
+      description: "Economize com taxas abusivas de nuvem. Servidores dedicados com Docker, Coolify, n8n e AWS garantindo privacidade, segurança e controle total.",
       icon: <Workflow className="text-violet-600" />,
     },
   ];
 
   const navLinks = [
-    { name: "Desafios", href: "#desafios" },
+    { name: "Soluções", href: "#solucoes" },
     { name: "Produtos", href: "#produtos" },
-    { name: "Infraestrutura", href: "#pilares" },
-    { name: "Fale Conosco", href: "#contato" },
+    { name: "Infraestrutura", href: "#infraestrutura" },
+    { name: "Agentes", href: "#agentes" },
   ];
 
   const footerLinks = [
-    { label: "StackFab CRM", href: "https://stackfab.com.br" },
-    { label: "Sofia", href: "https://sofias.stackfab.com.br" },
-    { label: "Questione Online", href: "https://quest.stackfab.com.br" },
-    { label: "AprendiAI", href: "https://aprendiai.info" },
+    { label: "stackfab.com.br", href: "https://stackfab.com.br" },
+    { label: "sofias.stackfab.com.br", href: "https://sofias.stackfab.com.br" },
+    { label: "quest.stackfab.com.br", href: "https://quest.stackfab.com.br" },
+    { label: "aprendiai.info", href: "https://aprendiai.info" },
   ];
+
+  const filteredProducts = products.filter(
+    (product) => activeCategory === "todos" || product.category === activeCategory
+  );
 
   const openWhatsApp = () => {
     const message = encodeURIComponent("Quero projetar minha solução com a StackFab.");
-    window.open(`https://wa.me/?text=${message}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/554194394373?text=${message}`, "_blank", "noopener,noreferrer");
   };
 
   const scrollToSection = (id: string) => {
@@ -117,20 +209,22 @@ export default function Home() {
       <BackgroundGrid />
       <Navbar />
 
-      <section className="relative pt-36 pb-20 overflow-hidden">
+      {/* Hero Section */}
+      <section id="solucoes" className="relative pt-36 pb-20 overflow-hidden bg-gradient-to-b from-indigo-50/20 via-slate-50 to-slate-50">
+        <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-indigo-100/10 to-transparent pointer-events-none" />
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center relative">
             <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-indigo-100/40 blur-3xl pointer-events-none" />
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-[11px] font-bold text-indigo-700 mb-6 uppercase tracking-[0.24em]">
-                <Activity size={12} className="animate-pulse" /> Web premium + IA agêntica
+                <Activity size={12} className="animate-pulse" /> 🤖 O Futuro do Desenvolvimento Web + IA Agêntica
               </span>
-              <h1 className="text-4xl md:text-6xl font-outfit font-extrabold mb-5 leading-[1.05] text-slate-900 tracking-tight">
-                Software que pensa,
-                <span className="block text-gradient">age e escala com o seu negócio.</span>
+              <h1 className="text-4xl md:text-6xl font-outfit font-extrabold mb-5 leading-[1.08] text-slate-900 tracking-tight">
+                Nós não apenas programamos.
+                <span className="block text-gradient">Nós criamos software que pensa, age e escala.</span>
               </h1>
-              <p className="text-lg md:text-xl text-slate-500 mb-9 max-w-2xl mx-auto font-medium leading-relaxed">
-                Criamos aplicações web premium e agentes de IA que automatizam atendimento, operação e decisões repetitivas.
+              <p className="text-lg md:text-xl text-slate-500 mb-9 max-w-3xl mx-auto font-medium leading-relaxed">
+                Desenvolvemos aplicações web de alta performance e integramos agentes autônomos de IA capazes de automatizar o atendimento, gerenciar fluxos de trabalho complexos e tomar decisões inteligentes para o seu negócio.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button size="lg" onClick={openWhatsApp}>
@@ -141,9 +235,9 @@ export default function Home() {
                 </Button>
               </div>
 
-              <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
+              <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
                 {[
-                  { value: "4", label: "frentes ativas" },
+                  { value: `${products.length}`, label: "frentes ativas" },
                   { value: "24/7", label: "automações e agentes" },
                   { value: "1", label: "stack unificada" },
                 ].map((stat) => (
@@ -158,60 +252,121 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="desafios" className="py-24 bg-white border-y border-slate-100">
+      {/* Challenges / Infrastructure Section */}
+      <section id="infraestrutura" className="py-24 bg-white border-y border-slate-100">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">Desafios</h2>
-            <h3 className="text-3xl md:text-4xl font-outfit font-extrabold text-slate-900 mb-4">Crescer sem travar a operação.</h3>
+            <h2 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">Infraestrutura</h2>
+            <h3 className="text-3xl md:text-4xl font-outfit font-extrabold text-slate-900 mb-4">
+              Sua empresa está crescendo, mas seus sistemas continuam estáticos?
+            </h3>
             <p className="text-slate-500 max-w-2xl mx-auto font-medium">
-              Se o sistema ainda depende de cliques e respostas manuais, ele está consumindo tempo onde deveria gerar escala.
+              Softwares tradicionais dependem de cliques e comandos manuais para tudo. Nós criamos sistemas que entendem o contexto e resolvem problemas sozinhos.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {challenges.map((challenge, index) => (
-              <div key={challenge.title} className="bg-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm">
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="w-10 h-10 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-indigo-600 font-bold">
-                    0{index + 1}
-                  </span>
-                  <h4 className="text-xl font-outfit font-extrabold text-slate-900">{challenge.title}</h4>
+            {challenges.map((challenge, index) => {
+              const isProblem = challenge.type === "problem";
+              return (
+                <div
+                  key={index}
+                  className={`border rounded-3xl p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 ${
+                    isProblem
+                      ? "bg-slate-50/50 border-slate-200/60"
+                      : "bg-indigo-50/30 border-indigo-100/50"
+                  }`}
+                >
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
+                      isProblem
+                        ? "bg-rose-50 border-rose-100 text-rose-600"
+                        : "bg-indigo-50 border-indigo-100 text-indigo-600"
+                    }`}>
+                      {isProblem ? "Problema" : "Solução StackFab"}
+                    </span>
+                    <h4 className="text-xl font-outfit font-extrabold text-slate-900">{challenge.title}</h4>
+                  </div>
+                  <p className="text-sm md:text-base text-slate-500 leading-relaxed font-medium">{challenge.description}</p>
                 </div>
-                <p className="text-sm md:text-base text-slate-500 leading-relaxed">{challenge.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section id="produtos" className="py-24 relative">
+      {/* Products Ecosystem Section */}
+      <section id="produtos" className="py-24 relative bg-slate-50/50">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">Ecossistema StackFab</h2>
-            <h3 className="text-3xl md:text-4xl font-outfit font-extrabold text-slate-900 mb-4">Soluções reais, em um só ecossistema.</h3>
+            <h3 className="text-3xl md:text-4xl font-outfit font-extrabold text-slate-900 mb-4">Soluções reais construídas por nós.</h3>
             <p className="text-slate-500 max-w-2xl mx-auto font-medium">
-              Quatro frentes que compartilham a mesma base técnica e a mesma lógica de entrega.
+              Conheça as plataformas, ferramentas e laboratórios digitais que carregam o DNA de engenharia da StackFab:
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {products.map((product) => (
-              <ProductCard key={product.title} {...product} />
-            ))}
+          {/* Categories Selector Tabs */}
+          <div className="flex items-center justify-center gap-2 mb-12 flex-wrap">
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id as any)}
+                  className={`relative px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full border transition-all cursor-pointer ${
+                    isActive
+                      ? "border-indigo-600 text-white bg-indigo-600 shadow-md shadow-indigo-600/10"
+                      : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-800"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="active-cat-bg"
+                      className="absolute inset-0 bg-indigo-600 rounded-full z-0"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{cat.name}</span>
+                </button>
+              );
+            })}
           </div>
+
+          {/* Products Grid */}
+          <motion.div 
+            layout
+            className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredProducts.map((product) => (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  key={product.title}
+                >
+                  <ProductCard {...product} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </section>
 
+      {/* Differentiation / Pillars Section */}
       <section id="pilares" className="py-24 bg-white border-y border-slate-100">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">Pilares Tecnológicos</h2>
-            <h3 className="text-3xl md:text-4xl font-outfit font-extrabold text-slate-900 mb-4">Menos agência. Mais engenharia.</h3>
+            <h2 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">Diferenciais</h2>
+            <h3 className="text-3xl md:text-4xl font-outfit font-extrabold text-slate-900 mb-4">O que nos torna diferentes das agências tradicionais?</h3>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {pillars.map((pillar) => (
-              <div key={pillar.title} className="bg-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm">
+              <div key={pillar.title} className="bg-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm transition-all duration-300 hover:-translate-y-1">
                 <div className="p-3.5 rounded-2xl bg-white border border-slate-100 w-fit mb-5">{pillar.icon}</div>
                 <h4 className="text-lg font-outfit font-extrabold text-slate-900 mb-3">{pillar.title}</h4>
                 <p className="text-sm text-slate-500 leading-relaxed font-medium">{pillar.description}</p>
@@ -221,73 +376,60 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="agente" className="py-24 relative">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
-            <div>
-              <h2 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">Explicativo</h2>
-              <h3 className="text-3xl md:text-4xl font-outfit font-extrabold text-slate-900 mb-6 leading-tight">
-                Chatbots tradicionais seguem regras. Nossos Agentes tomam decisões.
-              </h3>
-              <div className="space-y-5 text-slate-500 leading-relaxed font-medium">
-                <p>
-                  Um chatbot comum lê palavras-chave e devolve menus. Se a conversa sai do script, ele quebra.
-                </p>
-                <p>
-                  Um <span className="font-bold text-slate-800">Agente StackFab</span> entende contexto, consulta sistemas e conclui o fluxo sem intervenção humana.
-                </p>
-              </div>
+      {/* Agent Comparison Section */}
+      <section id="agentes" className="py-24 relative bg-slate-900 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(79,70,229,0.15),transparent)] pointer-events-none" />
+        <div className="container mx-auto px-6 max-w-6xl relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Agentes vs Chatbots</h2>
+            <h3 className="text-3xl md:text-4xl font-outfit font-extrabold text-white mb-4">
+              Chatbots seguem regras. Nossos Agentes tomam decisões.
+            </h3>
+            <p className="text-slate-400 max-w-2xl mx-auto font-medium">
+              Um chatbot comum lê uma palavra-chave e exibe um menu. Se o cliente sair do script, o sistema falha.
+            </p>
+          </div>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-100 text-xs font-bold uppercase tracking-wider text-slate-500">
-                  <ChevronRight size={14} className="text-indigo-600" /> WhatsApp
-                </span>
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-100 text-xs font-bold uppercase tracking-wider text-slate-500">
-                  <ChevronRight size={14} className="text-indigo-600" /> CRM
-                </span>
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-100 text-xs font-bold uppercase tracking-wider text-slate-500">
-                  <ChevronRight size={14} className="text-indigo-600" /> Agendamento
-                </span>
-              </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-8 transition-colors hover:bg-white/10">
+              <h4 className="text-xl font-outfit font-extrabold text-white flex items-center gap-2 mb-4">
+                <span className="w-7 h-7 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center text-sm font-bold">✕</span>
+                Chatbot Tradicional
+              </h4>
+              <p className="text-slate-300 leading-relaxed font-medium">
+                Menu fixo, respostas pré-programadas, zero contexto. Qualquer desvio quebra a experiência e o cliente desiste.
+              </p>
             </div>
-
-            <div className="bg-slate-900 text-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-slate-900/10 border border-slate-800">
-              <div className="flex items-center justify-between mb-8">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.35em] text-slate-400 mb-2">StackFab Agent</p>
-                  <h4 className="text-2xl font-outfit font-extrabold">Fluxo em 3 passos</h4>
-                </div>
-                <span className="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_24px_rgba(74,222,128,0.8)] animate-pulse" />
-              </div>
-
-              <div className="space-y-4">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <p className="text-[10px] uppercase tracking-[0.35em] text-slate-400 mb-2">Cliente</p>
-                  <p className="text-sm text-slate-200">Quero agendar e tirar uma dúvida sobre o plano.</p>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-indigo-500/10 p-4">
-                  <p className="text-[10px] uppercase tracking-[0.35em] text-indigo-200 mb-2">Agente StackFab</p>
-                  <p className="text-sm text-slate-100">Entendi. Vou validar, registrar e responder com a melhor opção disponível.</p>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-emerald-500/10 p-4">
-                  <p className="text-[10px] uppercase tracking-[0.35em] text-emerald-200 mb-2">Resultado</p>
-                  <p className="text-sm text-slate-100">Agendamento confirmado, registro salvo e conversa encerrada com clareza.</p>
-                </div>
-              </div>
+            
+            <div className="bg-white/5 border border-indigo-500/20 rounded-3xl p-8 transition-colors hover:bg-white/10">
+              <h4 className="text-xl font-outfit font-extrabold text-indigo-400 flex items-center gap-2 mb-4">
+                <span className="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm font-bold">✓</span>
+                Agente StackFab
+              </h4>
+              <p className="text-slate-300 leading-relaxed font-medium">
+                Usa inteligência contextual. Entende a dor do cliente no WhatsApp, consulta disponibilidade no banco, insere no CRM, agenda e confirma — tudo fluido, natural e sem intervenção humana.
+              </p>
             </div>
+          </div>
+
+          <div className="mt-8">
+            <TerminalMock />
           </div>
         </div>
       </section>
 
+      {/* CTA Section */}
       <section className="py-24 bg-white border-y border-slate-100">
         <div className="container mx-auto px-6 max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-outfit font-extrabold text-slate-900 mb-4">Quer um agente para um fluxo específico?</h2>
+          <h2 className="text-3xl md:text-4xl font-outfit font-extrabold text-slate-900 mb-4">
+            Pronto para colocar a IA para trabalhar de verdade na sua empresa?
+          </h2>
           <p className="text-slate-500 font-medium mb-10 max-w-2xl mx-auto">
-            Podemos desenhar web, automação ou IA para atendimento, operação ou produto novo.
+            Vamos desenhar juntos a arquitetura web e os agentes que vão transformar a eficiência da sua operação.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" onClick={() => scrollToSection("contato")}>
-              Quero um fluxo automatizado
+              Quero automatizar meu negócio
             </Button>
             <Button variant="outline" size="lg" onClick={openWhatsApp}>
               Falar no WhatsApp
@@ -296,6 +438,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Contact Section */}
       <section id="contato" className="py-24 relative">
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="text-center mb-12">
@@ -360,6 +503,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="py-12 border-t border-slate-100 bg-slate-50/70">
         <div className="container mx-auto px-6">
           <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr_0.9fr] items-start text-sm">
@@ -370,12 +514,12 @@ export default function Home() {
                   Stack<span className="text-indigo-600">Fab</span>
                 </span>
               </div>
-              <p className="text-slate-500 font-medium max-w-sm">StackFab — software web, automação e IA agêntica para operações que precisam escalar.</p>
+              <p className="text-slate-500 font-medium max-w-sm">Fábrica de Soluções Web, Automações de Ponta e Modelos Agênticos Inteligentes.</p>
               <p className="mt-4 text-xs font-bold uppercase tracking-wider text-slate-400">© 2026 StackFab. Todos os direitos reservados.</p>
             </div>
 
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-slate-400 mb-4">Links de Navegação</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-slate-400 mb-4">Navegação</h4>
               <div className="flex flex-col gap-3">
                 {navLinks.map((link) => (
                   <a key={link.name} href={link.href} className="text-slate-600 hover:text-indigo-600 transition-colors">
@@ -386,7 +530,7 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-slate-400 mb-4">Nossos Produtos</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-slate-400 mb-4">Produtos</h4>
               <div className="flex flex-col gap-3">
                 {footerLinks.map((link) => (
                   <a key={link.label} href={link.href} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-indigo-600 transition-colors">

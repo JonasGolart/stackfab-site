@@ -18,10 +18,10 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Desafios', href: '#desafios' },
+    { name: 'Soluções', href: '#solucoes' },
     { name: 'Produtos', href: '#produtos' },
-    { name: 'Infraestrutura', href: '#pilares' },
-    { name: 'Fale Conosco', href: '#contato' },
+    { name: 'Infraestrutura', href: '#infraestrutura' },
+    { name: 'Agentes', href: '#agentes' },
   ];
 
   return (
