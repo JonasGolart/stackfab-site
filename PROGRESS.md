@@ -35,18 +35,24 @@ Histórico de desenvolvimento e marcos atingidos.
 - [x] Migração de envio de e-mails de Resend para SMTP Hostinger (`suporte@stackfab.com.br`) usando Nodemailer.
 - [x] Validação bem-sucedida do build de produção (`npm run build`).
 
-### Fase 5: Padronização e Tokens de Design (2026-07-08)
-- [x] Adoção obrigatória do padrão `DESIGN.md` na raiz do projeto.
-- [x] Mapeamento dos design tokens oficiais (colors, typography, rounded, spacing, components).
-- [x] Inclusão de scripts `design:lint` e `design:export` no `package.json` para validação e integração com Tailwind CSS v4.
+### Fase 6: Redesign Cartoon Tech & Sofia Live Widget (2026-08-31)
+- [x] Reformulação visual completa para a estética **Cartoon Tech / Neo-Brutalist** (contornos marcados `border-2/3`, *hard-shadows* táteis e paleta quente).
+- [x] Geração e integração de 4 mascotes 2D temáticos (`mascot-sofia`, `mascot-linuxlab`, `mascot-aprendiai`, `mascot-crm`).
+- [x] Implementação da nova seção de **Serviços Sob Demanda** (Fábrica de Micro-SaaS & ERPs, Agentes WhatsApp e Infraestrutura Self-Hosted).
+- [x] Isolamento e remoção de produtos exclusivos privados do catálogo público.
+- [x] Criação do componente `SofiaChatWidget` conectado ao backend oficial da Sofia via proxy API `/api/sofia-chat`.
+- [x] Injeção contextual da base institucional da StackFAB no motor da Sofia.
+- [x] Atualização de contatos oficiais para o WhatsApp `+55 (41) 9848-6414`.
+- [x] Sincronização e push das alterações no GitHub (`main`).
 
 ## ⏳ Próximos Passos
-- [ ] Criar e anexar as subpáginas dedicadas para produtos chave (AprendiAI, StackFab 2 e Sofia).
-- [ ] Adicionar micro-interações de scroll (Framer Motion scroll transitions).
+- [ ] Criar e anexar as subpáginas dedicadas para produtos chave (AprendiAI e Sofia).
+- [ ] Implementar calculadora interativa de ROI / Economia com IA.
 - [ ] Otimização avançada de SEO institucional.
 
 ## 🛠️ Notas Técnicas
-- **Design Tokens:** Detalhados e documentados em [[DESIGN.md]].
-- **Paleta:** Fundo Slate leve (#f8fafc) e acentos em Indigo (#4f46e5) e Sky (#0ea5e9).
-- **Tipografia:** Inter (corpo) e Outfit (títulos).
-- **Envio:** SMTP Hostinger (suporte@stackfab.com.br) via Nodemailer.
+- **Design Tokens:** Estilo Cartoon Neo-Brutalist com utilitários customizados `.cartoon-box`, `.cartoon-btn` e `.cartoon-sticker`.
+- **Paleta:** Fundo Stone (#fafaf9), contornos (#0f172a) e acentos em Amarelo Sol (#facc15), Roxo (#8b5cf6) e Esmeralda (#10b981).
+- **Tipografia:** Inter (corpo) e Outfit (títulos ultra-bold).
+- **Agente IA:** Conexão direta com a API pública da Sofia (`https://sofias.stackfab.com.br/api/public/chat`) via Next.js proxy route `/api/sofia-chat`.
+
